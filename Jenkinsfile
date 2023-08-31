@@ -13,20 +13,21 @@ pipeline {
             }
         }
         stage('Test') {
-            steps {
-                echo "Testing.."
-                script {
-                    def testOutput = sh(script: 'npm run int-test', returnStatus: true).trim()
-                    echo "Test Output: ${testOutput}"
+    steps {
+        echo "Testing.."
+        script {
+            def exitCode = sh(script: 'npm run int-test', returnStatus: true)
+            echo "Test Exit Code: ${exitCode}"
 
-                    if (testOutput == 0) {
-                        echo "All tests are green!"
-                    } else {
-                        error "Some tests failed!"
-                    }
-                }
+            if (exitCode == 0) {
+                echo "All tests are green!"
+            } else {
+                error "Some tests failed!"
             }
         }
+    }
+}
+
         stage('Deliver') {
             steps {
                 echo 'Deliver....'
