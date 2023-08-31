@@ -17,14 +17,16 @@ pipeline {
         stage('Test') {
             steps {
                 echo "Testing.."
-                def testOutput = sh(script: 'npm run int-test', returnStdout: true).trim()
-                echo "Test Output: ${testOutput}"
+                sh '''
+                    def testOutput = sh(script: 'npm run int-test', returnStdout: true).trim()
+                    echo "Test Output: ${testOutput}"
 
-                if (testOutput.contains("All tests passed")) {
-                    echo "All tests are green!"
-                } else {
-                    error "Some tests failed!"
-                }
+                    if (testOutput.contains("All tests passed")) {
+                        echo "All tests are green!"
+                    } else {
+                        error "Some tests failed!"
+                    }
+                '''
             }
         }
         stage('Deliver') {
