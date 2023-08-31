@@ -1,0 +1,146 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+    "id": "project1",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.10.5",
+      "toolsId": "28ff61d1-6f3b-43ff-9225-2b9bb806f23b"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata4/rfm/ui_fundingprogram_o4/srvd/rfm/ui_fundingprogram/0001/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "annotation"
+          ],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.114.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "project1.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "xRFMxCU_FPG_AllowedFundingTypeList",
+          "target": "xRFMxCU_FPG_AllowedFundingTypeList"
+        },
+        {
+          "pattern": "xRFMxCU_FPG_AllowedFundingType({key}):?query:",
+          "name": "xRFMxCU_FPG_AllowedFundingTypeObjectPage",
+          "target": "xRFMxCU_FPG_AllowedFundingTypeObjectPage"
+        }
+      ],
+      "targets": {
+        "xRFMxCU_FPG_AllowedFundingTypeList": {
+          "type": "Component",
+          "id": "xRFMxCU_FPG_AllowedFundingTypeList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "xRFMxCU_FPG_AllowedFundingType",
+              "variantManagement": "Page",
+              "navigation": {
+                "xRFMxCU_FPG_AllowedFundingType": {
+                  "detail": {
+                    "route": "xRFMxCU_FPG_AllowedFundingTypeObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "xRFMxCU_FPG_AllowedFundingTypeObjectPage": {
+          "type": "Component",
+          "id": "xRFMxCU_FPG_AllowedFundingTypeObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "entitySet": "xRFMxCU_FPG_AllowedFundingType"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}

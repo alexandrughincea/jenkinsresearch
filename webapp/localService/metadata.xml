@@ -1,0 +1,978 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="SAP__common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="SAP__measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Core.V1" Alias="SAP__core"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="SAP__capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="SAP__aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="SAP__validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="SAP__UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HTML5',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="SAP__HTML5"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PDF',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PDF.v1" Alias="SAP__PDF"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_SESSION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Session.v1" Alias="SAP__session"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HIERARCHY',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Hierarchy.v1" Alias="SAP__hierarchy"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="com.sap.gateway.srvd.rfm.ui_fundingprogram.v0001" Alias="SAP__self">
+            <Annotation Term="SAP__core.SchemaVersion" String="1.0.0"/>
+            <EntityType Name="xRFMxCU_InvestorAgreementType">
+                <Key>
+                    <PropertyRef Name="AgreementId"/>
+                </Key>
+                <Property Name="AgreementId" Type="Edm.String" Nullable="false" MaxLength="14"/>
+                <Property Name="ProgramId" Type="Edm.String" Nullable="false" MaxLength="14"/>
+                <Property Name="PartnerId" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="Proportion" Type="Edm.Decimal" Nullable="false" Precision="12" Scale="7"/>
+                <Property Name="Volume" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="variable"/>
+                <Property Name="UsedVolume" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="variable"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
+                <Property Name="ValidFrom" Type="Edm.Date"/>
+                <Property Name="ValidTo" Type="Edm.Date"/>
+            </EntityType>
+            <EntityType Name="xRFMxCU_FundingProgramType">
+                <Key>
+                    <PropertyRef Name="FpgId"/>
+                </Key>
+                <Property Name="FpgId" Type="Edm.String" Nullable="false" MaxLength="14"/>
+                <Property Name="FundingId" Type="Edm.String" Nullable="false" MaxLength="14"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="ValidFrom" Type="Edm.Date"/>
+                <Property Name="MaturityDate" Type="Edm.Date"/>
+                <Property Name="RolloverFlag" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="RolloverPercent" Type="Edm.Decimal" Nullable="false" Precision="10" Scale="7"/>
+                <Property Name="RolloverAmount" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="variable"/>
+                <Property Name="RevolvingStatus" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="Volume" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="variable"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
+                <Property Name="RiskTransfer" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="StatusDate" Type="Edm.Date"/>
+                <Property Name="FundingScope" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="AssetCategory" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="DualFundingFlag" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="CheckAgreementsFlag" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="CreatedAtDate" Type="Edm.Date"/>
+                <Property Name="CreatedAtTime" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="ChangedAtDate" Type="Edm.Date"/>
+                <Property Name="ChangedAtTime" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Property Name="Fund_Intref" Type="Edm.String" Nullable="false" MaxLength="10"/>
+                <Property Name="Fund_AssetCategory" Type="Edm.String" Nullable="false" MaxLength="2"/>
+                <Property Name="Fund_SelectRuleCat" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="FundingName" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <NavigationProperty Name="_EventMap" Type="Collection(com.sap.gateway.srvd.rfm.ui_fundingprogram.v0001.xRFMxCU_FPG_Event_MapType)" Partner="_FundingProgram">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="xRFMxCU_FPG_AllowedFundingTypeType">
+                <Key>
+                    <PropertyRef Name="Fpgid"/>
+                    <PropertyRef Name="FundingTypeKey"/>
+                </Key>
+                <Property Name="Fpgid" Type="Edm.String" Nullable="false" MaxLength="14"/>
+                <Property Name="FundingTypeKey" Type="Edm.String" Nullable="false" MaxLength="2"/>
+            </EntityType>
+            <EntityType Name="xRFMxCU_FPG_Event_MapType">
+                <Key>
+                    <PropertyRef Name="Fpgid"/>
+                    <PropertyRef Name="EventId"/>
+                    <PropertyRef Name="EventSubId"/>
+                    <PropertyRef Name="EventType"/>
+                </Key>
+                <Property Name="Fpgid" Type="Edm.String" Nullable="false" MaxLength="14"/>
+                <Property Name="EventId" Type="Edm.String" Nullable="false" MaxLength="22"/>
+                <Property Name="EventSubId" Type="Edm.String" Nullable="false" MaxLength="22"/>
+                <Property Name="EventType" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="EventGroup" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="ActionId" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="ActionKey" Type="Edm.String" Nullable="false" MaxLength="4"/>
+                <Property Name="EventStatus" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="EventStatusCriticality" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="Suspend" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="Parameter1" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="Parameter2" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <Property Name="Parameter3" Type="Edm.String" Nullable="false" MaxLength="45"/>
+                <NavigationProperty Name="_FundingProgram" Type="com.sap.gateway.srvd.rfm.ui_fundingprogram.v0001.xRFMxCU_FundingProgramType" Nullable="false" Partner="_EventMap">
+                    <ReferentialConstraint Property="Fpgid" ReferencedProperty="FpgId"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityContainer Name="Container">
+                <EntitySet Name="xRFMxCU_FPG_AllowedFundingType" EntityType="com.sap.gateway.srvd.rfm.ui_fundingprogram.v0001.xRFMxCU_FPG_AllowedFundingTypeType"/>
+                <EntitySet Name="xRFMxCU_FPG_Event_Map" EntityType="com.sap.gateway.srvd.rfm.ui_fundingprogram.v0001.xRFMxCU_FPG_Event_MapType">
+                    <NavigationPropertyBinding Path="_FundingProgram" Target="xRFMxCU_FundingProgram"/>
+                </EntitySet>
+                <EntitySet Name="xRFMxCU_FundingProgram" EntityType="com.sap.gateway.srvd.rfm.ui_fundingprogram.v0001.xRFMxCU_FundingProgramType">
+                    <NavigationPropertyBinding Path="_EventMap" Target="xRFMxCU_FPG_Event_Map"/>
+                </EntitySet>
+                <EntitySet Name="xRFMxCU_InvestorAgreement" EntityType="com.sap.gateway.srvd.rfm.ui_fundingprogram.v0001.xRFMxCU_InvestorAgreementType"/>
+            </EntityContainer>
+            <Annotations Target="SAP__self.xRFMxCU_InvestorAgreementType/AgreementId">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Investor Agreement"/>
+                <Annotation Term="SAP__common.Heading" String="Invstor Agreement ID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Unique Key of the Investor Agreement"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_InvestorAgreementType/ProgramId">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Program ID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Funding Program ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_InvestorAgreementType/PartnerId">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Business Partner"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Business Partner ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_InvestorAgreementType/Volume">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+                <Annotation Term="SAP__common.Label" String="Amount of Investor"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Maximum Amount of Investor in Funding Program"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_InvestorAgreementType/UsedVolume">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+                <Annotation Term="SAP__common.Label" String="Consumed Amount"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Consumed Amount of Investor"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_InvestorAgreementType/Currency">
+                <Annotation Term="SAP__common.IsCurrency"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Currency"/>
+                <Annotation Term="SAP__common.Heading" String="Master Contract Currency"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Master Contract Currency"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_InvestorAgreementType">
+                <Annotation Term="SAP__common.Label" String="Projection View for table /RFM/INVESTAGREE"/>
+                <Annotation Term="SAP__UI.Facets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Investors"/>
+                            <PropertyValue Property="ID" String="Investors"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.Identification"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Investor"/>
+                        <PropertyValue Property="TypeNamePlural" String="Investors"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="ProgramId"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.Identification">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="PartnerId"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Volume"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="UsedVolume"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ValidFrom"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ValidTo"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="PartnerId"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Volume"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="UsedVolume"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ValidFrom"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ValidTo"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/xRFMxCU_InvestorAgreement">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="Volume"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="UsedVolume"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container">
+                <Annotation Term="SAP__CodeList.CurrencyCodes">
+                    <Record>
+                        <PropertyValue Property="Url" String="../../../../default/iwbep/common/0001/$metadata"/>
+                        <PropertyValue Property="CollectionPath" String="Currencies"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="SAP__aggregation.RollupType/None"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="SAP__capabilities.FilterFunctions">
+                    <Collection>
+                        <String>eq</String>
+                        <String>ne</String>
+                        <String>gt</String>
+                        <String>ge</String>
+                        <String>lt</String>
+                        <String>le</String>
+                        <String>and</String>
+                        <String>or</String>
+                        <String>contains</String>
+                        <String>startswith</String>
+                        <String>endswith</String>
+                        <String>any</String>
+                        <String>all</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SupportedFormats">
+                    <Collection>
+                        <String>application/json</String>
+                        <String>application/pdf</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__PDF.Features">
+                    <Record>
+                        <PropertyValue Property="DocumentDescriptionReference" String="../../../../default/iwbep/common/0001/$metadata"/>
+                        <PropertyValue Property="DocumentDescriptionCollection" String="MyDocumentDescriptions"/>
+                        <PropertyValue Property="ArchiveFormat" Bool="true"/>
+                        <PropertyValue Property="Border" Bool="true"/>
+                        <PropertyValue Property="CoverPage" Bool="true"/>
+                        <PropertyValue Property="FitToPage" Bool="true"/>
+                        <PropertyValue Property="FontName" Bool="true"/>
+                        <PropertyValue Property="FontSize" Bool="true"/>
+                        <PropertyValue Property="Margin" Bool="true"/>
+                        <PropertyValue Property="Padding" Bool="true"/>
+                        <PropertyValue Property="Signature" Bool="true"/>
+                        <PropertyValue Property="HeaderFooter" Bool="true"/>
+                        <PropertyValue Property="ResultSizeDefault" Int="20000"/>
+                        <PropertyValue Property="ResultSizeMaximum" Int="20000"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.KeyAsSegmentSupported"/>
+                <Annotation Term="SAP__capabilities.AsynchronousRequestsSupported"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/FpgId">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Program ID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Funding Program ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/FundingId">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Portfolio ID"/>
+                <Annotation Term="SAP__common.Heading" String="FPort. ID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Funding Portfolio ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/MaturityDate">
+                <Annotation Term="SAP__common.Label" String="Valid To"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Valid To"/>
+                <Annotation Term="SAP__common.Heading" String="Valid To"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/RolloverAmount">
+                <Annotation Term="SAP__common.Label" String="Amount"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Amount"/>
+                <Annotation Term="SAP__common.Heading" String="Limit Amount"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/RevolvingStatus">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Replenishmt Status"/>
+                <Annotation Term="SAP__common.Heading" String="Replenishment Status"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Funding Program Replenishment Status"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/Currency">
+                <Annotation Term="SAP__common.IsCurrency"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Currency"/>
+                <Annotation Term="SAP__common.Heading" String="Currency of FP"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Currency of Funding Program"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/Status">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Program Status"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Status of Funding Program in Process Flow"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/FundingScope">
+                <Annotation Term="SAP__common.Label" String="Scope"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Scope"/>
+                <Annotation Term="SAP__common.Heading" String="Scope of Funding"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/AssetCategory">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Asset Category"/>
+                <Annotation Term="SAP__common.Heading" String="Category"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Asset Category (Leasing/Loans/Invoices)"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/CreatedBy">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/ChangedBy">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/ChangedAtDate">
+                <Annotation Term="SAP__common.Label" String="Status Changed On"/>
+                <Annotation Term="SAP__common.Heading" String="Change"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Change Date"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/Fund_Intref">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Ref. Inter."/>
+                <Annotation Term="SAP__common.Heading" String="Reference Interest Rate"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Reference Interest Rate"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/Fund_AssetCategory">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Asset Category"/>
+                <Annotation Term="SAP__common.Heading" String="Category"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Asset Category (Leasing/Loans/Invoices)"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/Fund_SelectRuleCat">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/_EventMap">
+                <Annotation Term="SAP__common.Composition"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/xRFMxCU_FundingProgram">
+                <Annotation Term="SAP__capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="_EventMap"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType">
+                <Annotation Term="SAP__common.Label" String="Projection View for /RFM/FUNDINGPRG"/>
+                <Annotation Term="SAP__UI.Facets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Monitoring"/>
+                            <PropertyValue Property="ID" String="Monitoring"/>
+                            <PropertyValue Property="Target" AnnotationPath="_EventMap/@SAP__UI.LineItem"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="MasterDataFacet"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#headerFieldsGP1"/>
+                            <Annotation Term="SAP__UI.Hidden"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#headerFieldsGP2"/>
+                            <Annotation Term="SAP__UI.Hidden"/>
+                        </Record>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="FundingPortfolioFacet"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.FieldGroup#headerFieldsGP3"/>
+                            <Annotation Term="SAP__UI.Hidden"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="basicData">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="Currency"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="RolloverAmount"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ValidFrom"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="MaturityDate"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="FundingScope"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="headerFieldsGP1">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="FpgId"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="Name"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="Status"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="headerFieldsGP2">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="CreatedBy"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="CreatedAtDate"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="ChangedAtDate"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.FieldGroup" Qualifier="headerFieldsGP3">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="FundingId"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="FundingName"/>
+                                </Record>
+                                <Record Type="SAP__UI.DataField">
+                                    <PropertyValue Property="Value" Path="Fund_AssetCategory"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Funding Program"/>
+                        <PropertyValue Property="TypeNamePlural" String="Funding Programs"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="FpgId"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.Identification">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Currency"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="RolloverAmount"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ValidFrom"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="MaturityDate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="FundingScope"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="FpgId"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Name"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ValidFrom"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="MaturityDate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Status"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.PresentationVariant">
+                    <Record>
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="SAP__common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="FpgId"/>
+                                    <PropertyValue Property="Descending" Bool="true"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@SAP__UI.LineItem</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>FpgId</PropertyPath>
+                        <PropertyPath>Name</PropertyPath>
+                        <PropertyPath>ValidFrom</PropertyPath>
+                        <PropertyPath>MaturityDate</PropertyPath>
+                        <PropertyPath>Status</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_AllowedFundingTypeType/Fpgid">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Program ID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Funding Program ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_AllowedFundingTypeType/FundingTypeKey">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Funding Type"/>
+                <Annotation Term="SAP__common.Heading" String="Fund.Type"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_AllowedFundingTypeType">
+                <Annotation Term="SAP__common.Label" String="Projection View for table /RFM/FPGFUNDTYP"/>
+                <Annotation Term="SAP__UI.Facets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Permitted Funding Types"/>
+                            <PropertyValue Property="ID" String="FundingTypes"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.Identification"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Permitted Funding Type"/>
+                        <PropertyValue Property="TypeNamePlural" String="Permitted Funding Types"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" Path="FundingTypeKey"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="FundingTypeKey"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/xRFMxCU_FPG_AllowedFundingType">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/Fpgid">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Program ID"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Funding Program ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/EventId">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Event"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/EventSubId">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Sub-Event"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/EventType">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Event Type"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Event Category"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/EventGroup">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Event Category"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/ActionId">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Handling Note ID"/>
+                <Annotation Term="SAP__common.Heading" String="Note"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/ActionKey">
+                <Annotation Term="SAP__common.Label" String="Action"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Action"/>
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Heading" String="Action ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/EventStatus">
+                <Annotation Term="SAP__common.IsDigitSequence"/>
+                <Annotation Term="SAP__common.Label" String="Event Status"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Event Status in Monitoring"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/Parameter1">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Parameter"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Parameter for Monitoring Configuration"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/Parameter2">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Parameter"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Parameter for Monitoring Configuration"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/Parameter3">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Parameter"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Parameter for Monitoring Configuration"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/xRFMxCU_FPG_Event_Map">
+                <Annotation Term="SAP__capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="_FundingProgram"/>
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Bool="false"/>
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType">
+                <Annotation Term="SAP__common.Label" String="Projection View for table /RFM/FPGEVTMAP"/>
+                <Annotation Term="SAP__UI.Facets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Monitoring Settings"/>
+                            <PropertyValue Property="ID" String="Monitoring"/>
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.Identification"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Monitoring Setting"/>
+                        <PropertyValue Property="TypeNamePlural" String="Monitoring Settings"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="SAP__UI.DataField">
+                                <PropertyValue Property="Value" String="">
+                                    <Annotation Term="SAP__core.Messages">
+                                        <Collection>
+                                            <Record>
+                                                <PropertyValue Property="code" String="SADL_GW_EXP_VOCAN-001"/>
+                                                <PropertyValue Property="message" String="Property 'FpgId' of annotation 'UI.HEADERINFO.TITLE' in proj./view '/RFM/CU_FPG_Event_Map' not found"/>
+                                                <PropertyValue Property="severity" String="error"/>
+                                            </Record>
+                                        </Collection>
+                                    </Annotation>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.Identification">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="EventStatus"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="EventType"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="EventId"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="EventSubId"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="EventGroup"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="ActionKey"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Suspend"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Criticality" Path="EventStatusCriticality"/>
+                            <PropertyValue Property="Value" Path="EventStatus"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="EventType"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="EventId"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="EventSubId"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="EventGroup"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Action"/>
+                            <PropertyValue Property="Value" Path="ActionKey"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Value" Path="Suspend"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_InvestorAgreementType/Proportion">
+                <Annotation Term="SAP__common.Label" String="% Share in Trans."/>
+                <Annotation Term="SAP__common.Heading" String="Percentage Share of Transaction"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Percentage Share of Investor in Transaction"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_InvestorAgreementType/ValidFrom">
+                <Annotation Term="SAP__common.Label" String="Valid From"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Data as of Which the Agreement Is Valid"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_InvestorAgreementType/ValidTo">
+                <Annotation Term="SAP__common.Label" String="Valid To"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Date Until Which the Agreement Is Valid"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/Name">
+                <Annotation Term="SAP__common.Label" String="Program Name"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Name of Funding Program"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/ValidFrom">
+                <Annotation Term="SAP__common.Label" String="Valid From"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Validity Start Date of Funding Program"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/RolloverFlag">
+                <Annotation Term="SAP__common.Label" String="Revolving"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/RolloverPercent">
+                <Annotation Term="SAP__common.Label" String="Limit in %"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Limit Value in Percent for Revolving Funding Program"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/Volume">
+                <Annotation Term="SAP__common.Label" String="Amount"/>
+                <Annotation Term="SAP__common.Heading" String="Total Amount of FP"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Maximum Total Amount of Funding Program"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/RiskTransfer">
+                <Annotation Term="SAP__common.Label" String="Risk Transfer"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/StatusDate">
+                <Annotation Term="SAP__common.Label" String="Status Changed On"/>
+                <Annotation Term="SAP__common.Heading" String="Program Status Changed On"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Status Date for Funding Program"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/DualFundingFlag">
+                <Annotation Term="SAP__common.Label" String="Dual Funding"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/CheckAgreementsFlag">
+                <Annotation Term="SAP__common.Label" String="Check Inv. Agrmnts"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Indicator: Check Investor Agreement"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/CreatedAtDate">
+                <Annotation Term="SAP__common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/CreatedAtTime">
+                <Annotation Term="SAP__common.Label" String="Time Created"/>
+                <Annotation Term="SAP__common.Heading" String="Created At"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/ChangedAtTime">
+                <Annotation Term="SAP__common.Label" String="Change Time"/>
+                <Annotation Term="SAP__common.Heading" String="Change"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FundingProgramType/FundingName">
+                <Annotation Term="SAP__common.Label" String="Portfolio Name"/>
+                <Annotation Term="SAP__common.Heading" String="Fund. Prt. Name"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Short Description of Funding Portfolio"/>
+            </Annotations>
+            <Annotations Target="SAP__self.xRFMxCU_FPG_Event_MapType/Suspend">
+                <Annotation Term="SAP__common.Label" String="Suspend"/>
+                <Annotation Term="SAP__common.Heading" String="Sus."/>
+                <Annotation Term="SAP__common.QuickInfo" String="Suspend Event Processing with Fixed Transactions"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
