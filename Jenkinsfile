@@ -6,9 +6,9 @@ pipeline {
     }
 
     stages {
-        stage('Hello') {
+        stage('Build') {
             steps {
-                echo 'Hello World'
+                echo "Building.."
             }
         }
          stage('Test') {
@@ -17,6 +17,12 @@ pipeline {
                 sh '''
                 npm run int-test
                 '''
+            }
+        }
+        stage('Deliver') {
+            steps {
+                echo 'Deliver....'
+               
             }
         }
     }
