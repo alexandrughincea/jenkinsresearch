@@ -16,7 +16,7 @@ pipeline {
             steps {
         echo "Running OPA5 Tests..."
         script {
-            def exitCode = sh(script: 'fiori run --config ./ui5-mock.yaml --open "test/integration/opaTests.qunit.html"', returnStatus: true)
+            def exitCode = sh(script: 'npm run int-test', returnStatus: true)
             echo "Test Exit Code: ${exitCode}"
 
             if (exitCode == 0) {
