@@ -20,7 +20,7 @@ sap.ui.define([
                 When.onThexRFMxCU_FPG_AllowedFundingTypeList.onFilterBar().iExecuteSearch();
                 Then.onThexRFMxCU_FPG_AllowedFundingTypeList.onTable().iCheckRows();
 
-                When.onThexRFMxCU_FPG_AllowedFundingTypeList.onTable().iPressRow(0);
+                When.onThexRFMxCU_FPG_AllowedFundingTypeList.onTable().iPressRow(80);
                 Then.onThexRFMxCU_FPG_AllowedFundingTypeObjectPage.iSeeThisPage();
 
             });
