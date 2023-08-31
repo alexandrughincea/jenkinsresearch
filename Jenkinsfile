@@ -13,21 +13,20 @@ pipeline {
             }
         }
         stage('Test') {
-    steps {
-        echo "Testing.."
+            steps {
+        echo "Running OPA5 Tests..."
         script {
-            def exitCode = sh(script: 'npm run int-test', returnStatus: true)
+            def exitCode = sh(script: 'fiori run --config ./ui5-mock.yaml --open "test/integration/opaTests.qunit.html"', returnStatus: true)
             echo "Test Exit Code: ${exitCode}"
 
             if (exitCode == 0) {
-                echo "All tests are green!"
+                echo "All OPA5 tests passed!"
             } else {
-                error "Some tests failed!"
+                error "Some OPA5 tests failed!"
             }
         }
     }
 }
-
         stage('Deliver') {
             steps {
                 echo 'Deliver....'
