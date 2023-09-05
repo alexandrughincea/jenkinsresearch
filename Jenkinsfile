@@ -19,10 +19,10 @@ pipeline {
             def exitCode = sh(script: 'npm run int-test', returnStatus: true)
             echo "Test Exit Code: ${exitCode}"
 
-            if (exitCode == 0) {
-                echo "All OPA5 tests passed!"
-            } else {
+            if (exitCode == 1) {
                 error "Some OPA5 tests failed!"
+            } else {
+                 echo "All OPA5 tests passed!"
             }
         }
     }
