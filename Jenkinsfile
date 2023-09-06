@@ -1,61 +1,47 @@
 pipeline {
     agent any
 
-    // triggers {
-    //     pollSCM '* * * * *'
-    // }
-
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your Fiori Elements project from version control 
+                // Check out your source code repository (e.g., Git)
+                // You can configure credentials and repository URL here
                 checkout scm
             }
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                echo "Building.."
-                sh 'npm install'
+                // Install any necessary dependencies (e.g., Node.js, npm, SAPUI5 tools)
+                sh 'npm install' 
             }
         }
-        stage('Test') {
-            steps {
-        echo "Running OPA5 Tests..."
-        script {
-            def exitCode = sh(script: 'npm run int-test', returnStatus: true)
-            echo "Test Exit Code: ${exitCode}"
 
-            if (exitCode == 1) {
-                error "Some OPA5 tests failed!"
-            } else {
-                 echo "All OPA5 tests passed!"
+        stage('Run OPA5 Tests') {
+            steps {
+                // Run your OPA5 integrated tests using SAPUI5's testing tools
+                sh 'npm run int-test' 
             }
         }
-    }
-}
-        stage('Debug') {
-    steps {
-        sh 'ls -R' // List all files in the workspace for debugging
-    }
-}
 
-        stage('Deliver') {
+        stage('Check Test Results') {
             steps {
-                echo 'Deliver....'
+                // Check the test results and mark the build as unstable or failed if tests fail
+                script {
+                    def testExitCode = sh(script: 'npm run int-test --silent', returnStatus: true)
+                    if (testExitCode != 0) {
+                        currentBuild.result = 'FAILURE'
+                        error("OPA5 tests failed")
+                    }
+                }
             }
         }
     }
 
     post {
         always {
-            // Archive test results (if available)
-            junit '**/test-results.xml'
-
-            // Determine the build result based on the test results
-            script {
-                currentBuild.result = currentBuild.resultIsBetterOrEqualTo('SUCCESS') ? 'SUCCESS' : 'FAILURE'
-            }
+            // Archive test results or do any cleanup here
+            junit '**/target/test-results/*.xml'
         }
     }
 }
