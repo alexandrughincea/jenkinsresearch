@@ -40,4 +40,16 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            // Archive test results (if available)
+            junit '**/test-results.xml'
+
+            // Determine the build result based on the test results
+            script {
+                currentBuild.result = currentBuild.resultIsBetterOrEqualTo('SUCCESS') ? 'SUCCESS' : 'FAILURE'
+            }
+        }
+    }
 }
