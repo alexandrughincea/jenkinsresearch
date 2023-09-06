@@ -6,6 +6,13 @@ pipeline {
     // }
 
     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout your Fiori Elements project from version control 
+                checkout scm
+            }
+        }
+
         stage('Build') {
             steps {
                 echo "Building.."
