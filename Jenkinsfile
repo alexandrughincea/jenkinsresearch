@@ -34,6 +34,12 @@ pipeline {
         }
     }
 }
+        stage('Debug') {
+    steps {
+        sh 'ls -R' // List all files in the workspace for debugging
+    }
+}
+
         stage('Deliver') {
             steps {
                 echo 'Deliver....'
