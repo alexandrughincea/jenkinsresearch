@@ -1,47 +1,57 @@
-pipeline {
-    agent any
+#!/usr/bin/env groovy
 
-    stages {
-        stage('Checkout') {
-            steps {
-                // Check out your source code repository (e.g., Git)
-                // You can configure credentials and repository URL here
-                checkout scm
-            }
-        }
+@Library(['piper-lib-os']) _
 
-        stage('Install Dependencies') {
-            steps {
-                // Install any necessary dependencies (e.g., Node.js, npm, SAPUI5 tools)
-                sh 'npm install' 
-            }
-        }
+//Setup the skeleton for Jenkins based Runs
+node {
+ stage('Frontend Integration Tests') {
+  // Get some code from a GitHub repository
+  deleteDir()
+  git 'https://github.com/alexandrughincea/jenkinsresearch.git'
+  sh 'git checkout solved'
 
-        stage('Run OPA5 Tests') {
-            steps {
-                // Run your OPA5 integrated tests using SAPUI5's testing tools
-                sh 'npm run int-test' 
-            }
-        }
+  // below code is to execute from karma
+  karmaExecuteTests script: this, failOnError: false
+  testsPublishResults(
+   script: this,
+   junit: [pattern: 'target/junit/*/TEST*.xml', archive: true]
+  )
+  publishHTML target: [
+   allowMissing: true,
+   keepAll: true,
+   reportDir: 'target/html/',
+   reportFiles: 'JUnit.html',
+   reportName: "OPA5 Test Report"
+  ]
 
-        stage('Check Test Results') {
-            steps {
-                // Check the test results and mark the build as unstable or failed if tests fail
-                script {
-                    def testExitCode = sh(script: 'npm run int-test --silent', returnStatus: true)
-                    if (testExitCode != 0) {
-                        currentBuild.result = 'FAILURE'
-                        error("OPA5 tests failed")
-                    }
-                }
-            }
-        }
-    }
+  publishHTML target: [
+   allowMissing: true,
+   keepAll: true,
+   reportDir: 'target/coverage/Chrome 76.0.3809 (Linux 0.0.0)/',
+   reportFiles: 'index.html',
+   reportName: "OPA5 Coverage Report"
+  ]
+ }
+//  stage('System Tests') {
+//   deleteDir()
+//   git 'https://github.com/SAP-samples/teched2019-uiveri5.git'
+//   sh 'git checkout solved'
+//   // Call to execute UIVeri5 from piper library using jenkins credential store
+//   withCredentials([usernamePassword(
+//    credentialsId: 'uiveri5',
+//    passwordVariable: 'password',
+//    usernameVariable: 'username'
+//   )]) {
+//    uiVeri5ExecuteTests script: this, testOptions: "--config.auth.sapcloud-form.user=${username} --config.auth.sapcloud-form.pass=${password} --params.user=${username} --params.pass=${password}"
 
-    post {
-        always {
-            // Archive test results or do any cleanup here
-            junit '**/target/test-results/*.xml'
-        }
-    }
+//    publishHTML target: [
+//     allowMissing: true,
+//     alwaysLinkToLastBuild: true,
+//     keepAll: true,
+//     reportDir: 'target/report/',
+//     reportFiles: "report.html",
+//     reportName: "UIVeri5 Test Report"
+//    ]
+//   }
+//  }
 }
