@@ -1,57 +1,47 @@
-#!/usr/bin/env groovy
+pipeline {
+    agent any
 
-@Library(['piper-lib-os']) _
+    stages {
+        stage('Checkout') {
+            steps {
+                // Check out your SAP Fiori Elements application code
+                checkout scm
+            }
+        }
 
-//Setup the skeleton for Jenkins based Runs
-node {
- stage('Frontend Integration Tests') {
-  // Get some code from a GitHub repository
-  deleteDir()
-  git 'https://github.com/alexandrughincea/jenkinsresearch.git'
-  sh 'git checkout solved'
+        stage('Install Dependencies') {
+            steps {
+                // Install required dependencies, e.g., Node.js and npm
+                sh 'npm install'
+            }
+        }
 
-  // below code is to execute from karma
-  karmaExecuteTests script: this, failOnError: false
-  testsPublishResults(
-   script: this,
-   junit: [pattern: 'target/junit/*/TEST*.xml', archive: true]
-  )
-  publishHTML target: [
-   allowMissing: true,
-   keepAll: true,
-   reportDir: 'target/html/',
-   reportFiles: 'JUnit.html',
-   reportName: "OPA5 Test Report"
-  ]
+        stage('Run QUnit Tests') {
+            steps {
+                // Run OPA5 integrated tests
+                script {
+                    def testExitCode = sh(script: 'npm test', returnStatus: true)
+                    if (testExitCode == 0) {
+                        currentBuild.result = 'SUCCESS'
+                    } else {
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
+    }
 
-  publishHTML target: [
-   allowMissing: true,
-   keepAll: true,
-   reportDir: 'target/coverage/Chrome 76.0.3809 (Linux 0.0.0)/',
-   reportFiles: 'index.html',
-   reportName: "OPA5 Coverage Report"
-  ]
- }
-//  stage('System Tests') {
-//   deleteDir()
-//   git 'https://github.com/SAP-samples/teched2019-uiveri5.git'
-//   sh 'git checkout solved'
-//   // Call to execute UIVeri5 from piper library using jenkins credential store
-//   withCredentials([usernamePassword(
-//    credentialsId: 'uiveri5',
-//    passwordVariable: 'password',
-//    usernameVariable: 'username'
-//   )]) {
-//    uiVeri5ExecuteTests script: this, testOptions: "--config.auth.sapcloud-form.user=${username} --config.auth.sapcloud-form.pass=${password} --params.user=${username} --params.pass=${password}"
+    post {
+        success {
+            // Tests passed
+            echo 'Tests have passed. Deployment can proceed.'
+            // Add additional steps for deployment or notifications
+        }
 
-//    publishHTML target: [
-//     allowMissing: true,
-//     alwaysLinkToLastBuild: true,
-//     keepAll: true,
-//     reportDir: 'target/report/',
-//     reportFiles: "report.html",
-//     reportName: "UIVeri5 Test Report"
-//    ]
-//   }
-//  }
+        failure {
+            // Tests failed
+            echo 'Tests have failed. Deployment should not proceed.'
+            // Optionally, you can add notifications or take other actions
+        }
+    }
 }
