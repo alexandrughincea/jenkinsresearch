@@ -20,7 +20,7 @@ pipeline {
             steps {
                 // Run OPA5 integrated tests
                 script {
-                    def testExitCode = sh(script: 'npm test', returnStatus: true)
+                    def testExitCode = sh(script: 'npm run int-test', returnStatus: true)
                     if (testExitCode == 0) {
                         currentBuild.result = 'SUCCESS'
                     } else {
