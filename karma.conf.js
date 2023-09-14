@@ -1,21 +1,50 @@
-process.env.CHROME_BIN = require('puppeteer').executablePath();
-
-module.exports = function(config) {
-  "use strict";
+module.exports = function (config) {
+  process.env.CHROME_BIN = "/usr/bin/google-chrome"
   config.set({
-
-    frameworks: ['ui5'],
-    reporters: ["progress"],
-
-    browsers: ["Chrome_without_security"],
-    
-    customLaunchers: {
-      Chrome_without_security: {
-         base: 'ChromeHeadless',
-         flags: ['--disable-web-security', '--no-sandbox']
-      }
+    frameworks: ["ui5"],
+    ui5: {
+      url: "https://openui5.hana.ondemand.com"
     },
-    singleRun: true
+    
+    browsers: ["Chrome"],   
 
+    browserConsoleLogOptions: {
+      level: 'warn'
+    },
+
+    preprocessors: {
+      '**/webapp/**/!(*test*|localService)/**/*.js': ['coverage']
+    },
+    coverageReporter: {
+      includeAllSources: true,
+      reporters: [
+        {
+          type: 'html',
+          dir: './target/coverage'
+        },
+        {
+          type: 'text'
+        }
+      ]
+    },
+
+    junitReporter: {
+      outputDir: "./target/junit",
+      outputFile: "TEST-qunit.xml",
+      suite: "",
+      useBrowserName: true
+    },
+    htmlReporter: {
+      outputFile: './target/html/JUnit.html',
+
+      // Optional
+      pageTitle: 'Test Results',
+      subPageTitle: 'Detailed test results for OPA 5',
+      groupSuites: true,
+      useCompactStyle: true,
+      useLegacyStyle: true,
+      showOnlyFailed: false
+    },
+    reporters: ['progress', 'coverage', 'junit', 'html']
   });
 };
